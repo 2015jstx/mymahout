@@ -6,7 +6,7 @@ import org.conan.mymahout.hdfs.HdfsDAO;
 
 public class ItemCFHadoop {
 
-    private static final String HDFS = "hdfs://192.168.1.210:9000";
+    private static final String HDFS = "";
     
     public static void main(String[] args) throws Exception {
         String localFile = "datafile/item.csv";
@@ -18,11 +18,11 @@ public class ItemCFHadoop {
 
         JobConf conf = config();
         HdfsDAO hdfs = new HdfsDAO(HDFS, conf);
-        hdfs.rmr(inPath);
-        hdfs.mkdirs(inPath);
-        hdfs.copyFile(localFile, inPath);
-        hdfs.ls(inPath);
-        hdfs.cat(inFile);
+//        hdfs.rmr(inPath);
+//        hdfs.mkdirs(inPath);
+//        hdfs.copyFile(localFile, inPath);
+//        hdfs.ls(inPath);
+//        hdfs.cat(inFile);
 
         StringBuilder sb = new StringBuilder();
         sb.append("--input ").append(inPath);
@@ -42,9 +42,9 @@ public class ItemCFHadoop {
     public static JobConf config() {
         JobConf conf = new JobConf(ItemCFHadoop.class);
         conf.setJobName("ItemCFHadoop");
-        conf.addResource("classpath:/hadoop/core-site.xml");
-        conf.addResource("classpath:/hadoop/hdfs-site.xml");
-        conf.addResource("classpath:/hadoop/mapred-site.xml");
+//        conf.addResource("classpath:/hadoop/core-site.xml");
+//        conf.addResource("classpath:/hadoop/hdfs-site.xml");
+//        conf.addResource("classpath:/hadoop/mapred-site.xml");
         return conf;
     }
 

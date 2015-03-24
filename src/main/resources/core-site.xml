@@ -134,4 +134,9 @@
     <value>ssl-client.xml</value>
     <final>true</final>
   </property>
+
+  <property>
+    <name>hadoop.work.around.non.threadsafe.getpwuid</name>
+    <value>false</value>
+  </property>
 </configuration>
