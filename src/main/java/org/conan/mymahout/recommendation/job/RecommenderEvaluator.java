@@ -1,16 +1,12 @@
 package org.conan.mymahout.recommendation.job;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
-import org.apache.mahout.cf.taste.impl.recommender.ClusterSimilarity;
-import org.apache.mahout.cf.taste.impl.recommender.knn.NonNegativeQuadraticOptimizer;
 import org.apache.mahout.cf.taste.impl.recommender.svd.ALSWRFactorizer;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
-import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
@@ -28,7 +24,7 @@ public class RecommenderEvaluator {
         itemLoglikelihood(dataModel);
         itemCityBlock(dataModel);
         itemTanimoto(dataModel);
-        slopeOne(dataModel);
+//        slopeOne(dataModel);
 
     }
 
@@ -95,16 +91,17 @@ public class RecommenderEvaluator {
         return recommenderBuilder;
     }
 
-    public static RecommenderBuilder slopeOne(DataModel dataModel) throws TasteException, IOException {
-        System.out.println("slopeOne");
-        RecommenderBuilder recommenderBuilder = RecommendFactory.slopeOneRecommender();
+//    public static RecommenderBuilder slopeOne(DataModel dataModel) throws TasteException, IOException {
+//        System.out.println("slopeOne");
+//        RecommenderBuilder recommenderBuilder = RecommendFactory.slopeOneRecommender();
+//
+//        RecommendFactory.evaluate(RecommendFactory.EVALUATOR.AVERAGE_ABSOLUTE_DIFFERENCE, recommenderBuilder, null, dataModel, 0.7);
+//        RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
+//        return recommenderBuilder;
+//    }
 
-        RecommendFactory.evaluate(RecommendFactory.EVALUATOR.AVERAGE_ABSOLUTE_DIFFERENCE, recommenderBuilder, null, dataModel, 0.7);
-        RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
-        return recommenderBuilder;
-    }
-
-    public static RecommenderBuilder knnLoglikelihood(DataModel dataModel) throws TasteException, IOException {
+    @Deprecated
+    public static RecommenderBuilder knnLoglikelihood(DataModel dataModel) throws TasteException, IOException {/*
         System.out.println("knnLoglikelihood");
         ItemSimilarity itemSimilarity = RecommendFactory.itemSimilarity(RecommendFactory.SIMILARITY.LOGLIKELIHOOD, dataModel);
         RecommenderBuilder recommenderBuilder = RecommendFactory.itemKNNRecommender(itemSimilarity, new NonNegativeQuadraticOptimizer(), 10);
@@ -113,9 +110,11 @@ public class RecommenderEvaluator {
         RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
 
         return recommenderBuilder;
-    }
+*/    	return null;
+    	}
 
-    public static RecommenderBuilder knnTanimoto(DataModel dataModel) throws TasteException, IOException {
+    @Deprecated
+    public static RecommenderBuilder knnTanimoto(DataModel dataModel) throws TasteException, IOException {/*
         System.out.println("knnTanimoto");
         ItemSimilarity itemSimilarity = RecommendFactory.itemSimilarity(RecommendFactory.SIMILARITY.TANIMOTO, dataModel);
         RecommenderBuilder recommenderBuilder = RecommendFactory.itemKNNRecommender(itemSimilarity, new NonNegativeQuadraticOptimizer(), 10);
@@ -124,9 +123,11 @@ public class RecommenderEvaluator {
         RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
 
         return recommenderBuilder;
-    }
+*/		return null;
+    	}
 
-    public static RecommenderBuilder knnCityBlock(DataModel dataModel) throws TasteException, IOException {
+    @Deprecated
+    public static RecommenderBuilder knnCityBlock(DataModel dataModel) throws TasteException, IOException {/*
         System.out.println("knnCityBlock");
         ItemSimilarity itemSimilarity = RecommendFactory.itemSimilarity(RecommendFactory.SIMILARITY.CITYBLOCK, dataModel);
         RecommenderBuilder recommenderBuilder = RecommendFactory.itemKNNRecommender(itemSimilarity, new NonNegativeQuadraticOptimizer(), 10);
@@ -135,8 +136,10 @@ public class RecommenderEvaluator {
         RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
 
         return recommenderBuilder;
-    }
+*/		return null;
+    	}
 
+    @Deprecated
     public static RecommenderBuilder svd(DataModel dataModel) throws TasteException {
         System.out.println("svd");
         RecommenderBuilder recommenderBuilder = RecommendFactory.svdRecommender(new ALSWRFactorizer(dataModel, 5, 0.05, 10));
@@ -147,8 +150,9 @@ public class RecommenderEvaluator {
         return recommenderBuilder;
     }
 
+    @Deprecated
     public static RecommenderBuilder treeClusterLoglikelihood(DataModel dataModel) throws TasteException {
-        System.out.println("treeClusterLoglikelihood");
+/*        System.out.println("treeClusterLoglikelihood");
         UserSimilarity userSimilarity = RecommendFactory.userSimilarity(RecommendFactory.SIMILARITY.LOGLIKELIHOOD, dataModel);
         ClusterSimilarity clusterSimilarity = RecommendFactory.clusterSimilarity(RecommendFactory.SIMILARITY.FARTHEST_NEIGHBOR_CLUSTER, userSimilarity);
         RecommenderBuilder recommenderBuilder = RecommendFactory.treeClusterRecommender(clusterSimilarity, 3);
@@ -157,6 +161,8 @@ public class RecommenderEvaluator {
         RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
 
         return recommenderBuilder;
+    */
+    	return null;
     }
 
 }

@@ -23,7 +23,7 @@ public class BookEvaluator {
         itemEuclidean(dataModel);
         itemLoglikelihood(dataModel);
         itemEuclideanNoPref(dataModel);
-        slopeOne(dataModel);
+//        slopeOne(dataModel);
     }
 
     public static RecommenderBuilder userEuclidean(DataModel dataModel) throws TasteException, IOException {
@@ -89,13 +89,13 @@ public class BookEvaluator {
         return recommenderBuilder;
     }
 
-    public static RecommenderBuilder slopeOne(DataModel dataModel) throws TasteException, IOException {
-        System.out.println("slopeOne");
-        RecommenderBuilder recommenderBuilder = RecommendFactory.slopeOneRecommender();
-
-        RecommendFactory.evaluate(RecommendFactory.EVALUATOR.AVERAGE_ABSOLUTE_DIFFERENCE, recommenderBuilder, null, dataModel, 0.7);
-        RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
-        return recommenderBuilder;
-    }
+//    public static RecommenderBuilder slopeOne(DataModel dataModel) throws TasteException, IOException {
+//        System.out.println("slopeOne");
+//        RecommenderBuilder recommenderBuilder = RecommendFactory.slopeOneRecommender();
+//
+//        RecommendFactory.evaluate(RecommendFactory.EVALUATOR.AVERAGE_ABSOLUTE_DIFFERENCE, recommenderBuilder, null, dataModel, 0.7);
+//        RecommendFactory.statsEvaluator(recommenderBuilder, null, dataModel, 2);
+//        return recommenderBuilder;
+//    }
 
 }

@@ -40,7 +40,7 @@ public class KmeansHadoop {
         Path clustersSeeds = new Path(seeds);
         DistanceMeasure measure = new EuclideanDistanceMeasure();
         clustersSeeds = RandomSeedGenerator.buildRandom(conf, seqFilePath, clustersSeeds, k, measure);
-        KMeansDriver.run(conf, seqFilePath, clustersSeeds, new Path(outPath), measure, 0.01, 10, true, 0.01, false);
+//        KMeansDriver.run(conf, seqFilePath, clustersSeeds, new Path(outPath), measure, 0.01, 10, true, 0.01, false);
 
         Path outGlobPath = new Path(outPath, "clusters-*-final");
         Path clusteredPointsPath = new Path(clusteredPoints);

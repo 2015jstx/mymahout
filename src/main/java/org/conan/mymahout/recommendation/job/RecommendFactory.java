@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.digester.parser.GenericParser;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.DataModelBuilder;
 import org.apache.mahout.cf.taste.eval.IRStatistics;
@@ -19,22 +18,14 @@ import org.apache.mahout.cf.taste.impl.model.GenericBooleanPrefDataModel;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
-import org.apache.mahout.cf.taste.impl.recommender.ClusterSimilarity;
-import org.apache.mahout.cf.taste.impl.recommender.FarthestNeighborClusterSimilarity;
 import org.apache.mahout.cf.taste.impl.recommender.GenericBooleanPrefItemBasedRecommender;
 import org.apache.mahout.cf.taste.impl.recommender.GenericBooleanPrefUserBasedRecommender;
 import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
-import org.apache.mahout.cf.taste.impl.recommender.NearestNeighborClusterSimilarity;
-import org.apache.mahout.cf.taste.impl.recommender.TreeClusteringRecommender;
-import org.apache.mahout.cf.taste.impl.recommender.knn.KnnItemBasedRecommender;
-import org.apache.mahout.cf.taste.impl.recommender.knn.Optimizer;
-import org.apache.mahout.cf.taste.impl.recommender.slopeone.SlopeOneRecommender;
 import org.apache.mahout.cf.taste.impl.recommender.svd.Factorizer;
 import org.apache.mahout.cf.taste.impl.recommender.svd.SVDRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.CityBlockSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.EuclideanDistanceSimilarity;
-import org.apache.mahout.cf.taste.impl.similarity.GenericUserSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.SpearmanCorrelationSimilarity;
@@ -119,15 +110,15 @@ public final class RecommendFactory {
         }
     }
 
-    public static ClusterSimilarity clusterSimilarity(SIMILARITY type, UserSimilarity us) throws TasteException {
-        switch (type) {
-        case NEAREST_NEIGHBOR_CLUSTER:
-            return new NearestNeighborClusterSimilarity(us);
-        case FARTHEST_NEIGHBOR_CLUSTER:
-        default:
-            return new FarthestNeighborClusterSimilarity(us);
-        }
-    }
+//    public static ClusterSimilarity clusterSimilarity(SIMILARITY type, UserSimilarity us) throws TasteException {
+//        switch (type) {
+//        case NEAREST_NEIGHBOR_CLUSTER:
+//            return new NearestNeighborClusterSimilarity(us);
+//        case FARTHEST_NEIGHBOR_CLUSTER:
+//        default:
+//            return new FarthestNeighborClusterSimilarity(us);
+//        }
+//    }
 
     /**
      * neighborhood
@@ -177,22 +168,22 @@ public final class RecommendFactory {
         };
     }
 
-    public static RecommenderBuilder slopeOneRecommender() throws TasteException {
-        return new RecommenderBuilder() {
-            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
-                return new SlopeOneRecommender(dataModel);
-            }
+//    public static RecommenderBuilder slopeOneRecommender() throws TasteException {
+//        return new RecommenderBuilder() {
+//            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
+//                return new SlopeOneRecommender(dataModel);
+//            }
+//
+//        };
+//    }
 
-        };
-    }
-
-    public static RecommenderBuilder itemKNNRecommender(final ItemSimilarity is, final Optimizer op, final int n) throws TasteException {
-        return new RecommenderBuilder() {
-            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
-                return new KnnItemBasedRecommender(dataModel, is, op, n);
-            }
-        };
-    }
+//    public static RecommenderBuilder itemKNNRecommender(final ItemSimilarity is, final Optimizer op, final int n) throws TasteException {
+//        return new RecommenderBuilder() {
+//            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
+//                return new KnnItemBasedRecommender(dataModel, is, op, n);
+//            }
+//        };
+//    }
 
     public static RecommenderBuilder svdRecommender(final Factorizer factorizer) throws TasteException {
         return new RecommenderBuilder() {
@@ -202,13 +193,13 @@ public final class RecommendFactory {
         };
     }
 
-    public static RecommenderBuilder treeClusterRecommender(final ClusterSimilarity cs, final int n) throws TasteException {
-        return new RecommenderBuilder() {
-            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
-                return new TreeClusteringRecommender(dataModel, cs, n);
-            }
-        };
-    }
+//    public static RecommenderBuilder treeClusterRecommender(final ClusterSimilarity cs, final int n) throws TasteException {
+//        return new RecommenderBuilder() {
+//            public Recommender buildRecommender(DataModel dataModel) throws TasteException {
+//                return new TreeClusteringRecommender(dataModel, cs, n);
+//            }
+//        };
+//    }
 
     public static void showItems(long uid, List<RecommendedItem> recommendations, boolean skip) {
         if (!skip || recommendations.size() > 0) {
