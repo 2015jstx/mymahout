@@ -29,8 +29,13 @@ public class UserCF {
         DataModel model = new FileDataModel(new File(file));
         
      // 定义 基于欧几里德距离计算相似度
+//        	PearsonCorrelationSimilarity：基于皮尔逊相关系数计算相似度
+//        	EuclideanDistanceSimilarity：基于欧几里德距离计算相似度
+//        	TanimotoCoefficientSimilarity：基于 Tanimoto 系数计算相似度
         UserSimilarity user = new EuclideanDistanceSimilarity(model);
-      //o	NearestNUserNeighborhood：对每个用户取固定数量 N 的最近邻居，这里用 2
+        
+        //o	NearestNUserNeighborhood：对每个用户取固定数量 N 的最近邻居，这里用 2
+        //o	ThresholdUserNeighborhood：对每个用户基于一定的限制，取落在相似度门限内的所有用户为邻居。
         NearestNUserNeighborhood neighbor = new NearestNUserNeighborhood(NEIGHBORHOOD_NUM, user, model);
       //实例GenericUserBasedRecommender，实现 基于用户偏好的 推荐策略。
         Recommender r = new GenericUserBasedRecommender(model, neighbor, user);
