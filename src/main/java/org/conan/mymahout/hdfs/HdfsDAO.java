@@ -38,9 +38,9 @@ public class HdfsDAO {
     public static JobConf config(){
         JobConf conf = new JobConf(HdfsDAO.class);
         conf.setJobName("HdfsDAO");
-        conf.addResource("classpath:/hadoop/core-site.xml");
-        conf.addResource("classpath:/hadoop/hdfs-site.xml");
-        conf.addResource("classpath:/hadoop/mapred-site.xml");
+//        conf.addResource("classpath:/hadoop/core-site.xml");
+//        conf.addResource("classpath:/hadoop/hdfs-site.xml");
+//        conf.addResource("classpath:/hadoop/mapred-site.xml");
         return conf;
     }
     
